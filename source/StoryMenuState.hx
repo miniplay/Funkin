@@ -73,6 +73,8 @@ class StoryMenuState extends MusicBeatState
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
+		Miniplay.postEvent("StoryMenuState");
+
 		if (FlxG.sound.music != null)
 		{
 			if (!FlxG.sound.music.playing)

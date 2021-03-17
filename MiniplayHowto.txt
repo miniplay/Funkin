@@ -1,0 +1,20 @@
+# DEBUG BUILD #######################
+lime test html5 -debug -D source-map-content
+
+# RELEASE BUILD #####################
+lime test html5 --no-traces
+
+# ADD custom JS at html5/bin/index.html in order to capture the events and send them to the Miniplay JS API.  ######################################
+<script>
+    window.MiniplayHaxeAPI = {
+        onEvent: function(eventName, intValue, stringValue) {
+             console.log(eventName+" received");
+        },
+        onScore: function(song, score difficulty) {
+             console.log("Score for "+song+" ("+difficulty+"): "+score);
+        },
+        onWeekScore: function(week, score, difficulty) {
+            console.log("Week score for "+week+" ("+difficulty+"): "+score);
+        }
+    };
+</script>

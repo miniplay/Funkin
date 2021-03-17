@@ -147,6 +147,12 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
+        if (isStoryMode) {
+	        Miniplay.postEvent("PlayStateStory", storyWeek, SONG.song.toLowerCase());
+	    } else {
+	        Miniplay.postEvent("PlayStateFree", 0, SONG.song.toLowerCase());
+	    }
+
 		switch (SONG.song.toLowerCase())
 		{
 			case 'tutorial':
@@ -968,6 +974,8 @@ class PlayState extends MusicBeatState
 	{
 		startingSong = false;
 
+		Miniplay.postEvent("StartSong", 0, SONG.song.toLowerCase());
+
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;
 
@@ -1603,6 +1611,8 @@ class PlayState extends MusicBeatState
 			Highscore.saveScore(SONG.song, songScore, storyDifficulty);
 			#end
 		}
+
+		Miniplay.postEvent("EndSong", SONG.notes.length, SONG.song.toLowerCase());
 
 		if (isStoryMode)
 		{

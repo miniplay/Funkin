@@ -16,6 +16,8 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float)
 	{
+	    Miniplay.postEvent("GameOverSubState");
+
 		var daStage = PlayState.curStage;
 		var daBf:String = '';
 		switch (daStage)

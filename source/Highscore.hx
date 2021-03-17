@@ -15,6 +15,7 @@ class Highscore
 	{
 		var daSong:String = formatSong(song, diff);
 
+        Miniplay.postScore(song.toLowerCase(), score, diff);
 
 		#if !switch
 		NGio.postScore(score, song);
@@ -32,6 +33,8 @@ class Highscore
 
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
 	{
+
+        Miniplay.postWeekScore(week, score, diff);
 
 		#if !switch
 		NGio.postScore(score, "Week " + week);

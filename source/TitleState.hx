@@ -57,9 +57,11 @@ class TitleState extends MusicBeatState
 		NGio.noLogin(APIStuff.API);
 
 		#if ng
-		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		trace('NEWGROUNDS LOL');
+		    var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
+		    trace('NEWGROUNDS LOL');
 		#end
+
+		Miniplay.postEvent("TitleState");
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
@@ -195,6 +197,8 @@ class TitleState extends MusicBeatState
 
 		FlxG.mouse.visible = false;
 
+        initialized = true; // Mark as initialized to skip intro;
+
 		if (initialized)
 			skipIntro();
 		else
@@ -274,11 +278,14 @@ class TitleState extends MusicBeatState
 			transitioning = true;
 			// FlxG.sound.music.stop();
 
-			new FlxTimer().start(2, function(tmr:FlxTimer)
+			FlxG.switchState(new MainMenuState()); // Do not check NG version
+            /*new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
 				// Check if version is outdated
 
 				var version:String = "v" + Application.current.meta.get('version');
+
+                js.Lib.debug();
 
 				if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
 				{
@@ -293,7 +300,7 @@ class TitleState extends MusicBeatState
 				{
 					FlxG.switchState(new MainMenuState());
 				}
-			});
+			});*/
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
 
