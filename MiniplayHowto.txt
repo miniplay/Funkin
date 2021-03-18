@@ -10,7 +10,7 @@ lime test html5 --no-traces
         onEvent: function(eventName, intValue, stringValue) {
              console.log(eventName+" received");
         },
-        onScore: function(song, score difficulty) {
+        onScore: function(song, score, difficulty) {
              console.log("Score for "+song+" ("+difficulty+"): "+score);
         },
         onWeekScore: function(week, score, difficulty) {
